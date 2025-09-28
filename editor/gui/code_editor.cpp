@@ -1001,6 +1001,11 @@ void CodeTextEditor::_line_col_changed() {
 
 		find_replace_bar->line_col_changed_for_result = false;
 	}
+
+	StringBuilder sb_selected;
+	sb_selected.append(itos(text_editor->get_selected_text().length()));
+
+	selection_count_txt->set_text(sb_selected.as_string().lpad(2));
 }
 
 void CodeTextEditor::_text_changed() {
@@ -1990,6 +1995,19 @@ CodeTextEditor::CodeTextEditor() {
 	line_and_col_txt->set_accessibility_name(TTRC("Line and column numbers."));
 	line_and_col_txt->set_focus_mode(FOCUS_ACCESSIBILITY);
 	line_and_col_txt->set_mouse_filter(MOUSE_FILTER_STOP);
+
+	status_bar->add_child(memnew(VSeparator));
+
+	// Selected characters
+	selection_count_txt = memnew(Label);
+	status_bar->add_child(selection_count_txt);
+	selection_count_txt->set_v_size_flags(SIZE_EXPAND | SIZE_SHRINK_CENTER);
+	selection_count_txt->set_auto_translate_mode(AUTO_TRANSLATE_MODE_DISABLED);
+	selection_count_txt->set_tooltip_auto_translate_mode(AUTO_TRANSLATE_MODE_ALWAYS);
+	selection_count_txt->set_tooltip_text(TTRC("Number of characters in selection."));
+	selection_count_txt->set_accessibility_name(TTRC("Number of characters in selection."));
+	selection_count_txt->set_focus_mode(FOCUS_ACCESSIBILITY);
+	selection_count_txt->set_mouse_filter(MOUSE_FILTER_STOP);
 
 	status_bar->add_child(memnew(VSeparator));
 

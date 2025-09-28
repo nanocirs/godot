@@ -170,6 +170,7 @@ class CodeTextEditor : public VBoxContainer {
 
 	MenuButton *zoom_button = nullptr;
 	Label *line_and_col_txt = nullptr;
+	Label *selection_count_txt = nullptr;
 	Label *indentation_txt = nullptr;
 
 	Label *info = nullptr;
